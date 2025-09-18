@@ -37,6 +37,7 @@ export interface Company {
     bs:          string;
 }
 
+// props for the posts to be added
 export interface PostData {
     userId:number;
     id?: number;
@@ -47,4 +48,22 @@ export interface PostData {
 export interface PostModalProps{
     onClose: () => void;
     onSubmit: (post: PostData) => void;
+}
+
+// props for the user to be added
+
+export interface UserData{
+    id:       number;
+    name:     string;
+    username: string;
+    email:    string;
+    address:  Address;
+    phone:    string;
+    website:  string;
+    company:  Company;
+}
+
+export interface UserModalProps{
+    onClose: () => void;
+    onSubmit: (user: UserData)=> void;
 }
