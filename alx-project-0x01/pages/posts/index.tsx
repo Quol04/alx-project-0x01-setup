@@ -1,9 +1,20 @@
 import PostCard from "@/components/common/PostCard";
+import PostModal from "@/components/common/PostModal";
 import Header from "@/components/layout/Header";
-import { PostProps } from "@/interfaces";
+import { PostData, PostProps } from "@/interfaces";
+import { useState } from "react";
 
 const Posts: React.FC<PostProps[]> = ({ posts }) => {
-  console.log(posts[4])
+  const [isModalOpen, setModalOpen]= useState(false)
+  const [post, setPost] = useState <PostData | null>(null)
+
+
+  // console.log(posts[4])
+  const handleAddPost = (newPost : PostData) => {
+    setPost({... newPost, id : posts.length +1})
+
+  }
+   
   return (
     <div className="flex flex-col h-screen">
       <Header />
@@ -20,6 +31,10 @@ const Posts: React.FC<PostProps[]> = ({ posts }) => {
           }
         </div>
       </main>
+
+       {isModalOpen && (
+        <PostModal onClose={() => setModalOpen(false)} onSubmit={handleAddPost} />
+      )}
     </div>
   )
 }

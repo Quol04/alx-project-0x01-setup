@@ -4,7 +4,7 @@ import Header from "@/components/layout/Header";
 import { UserProps } from "@/interfaces";
 
 const User: React.FC<UserProps[]> = ({ users }) => {
-  console.log(users[5])
+//   console.log(users[5])
   return (
     <div className="flex flex-col h-screen">
       <Header />
@@ -25,7 +25,6 @@ const User: React.FC<UserProps[]> = ({ users }) => {
   )
 }
 
-
 export async function getStaticProps(){
     const response= await fetch ("https://jsonplaceholder.typicode.com/users")
     const users = await response.json()
@@ -36,6 +35,5 @@ export async function getStaticProps(){
         }
      }
 }
-
 
 export default User ;
