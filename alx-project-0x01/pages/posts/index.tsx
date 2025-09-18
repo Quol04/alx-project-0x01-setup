@@ -3,7 +3,7 @@ import Header from "@/components/layout/Header";
 import { PostProps } from "@/interfaces";
 
 const Posts: React.FC<PostProps[]> = ({ posts }) => {
-  console.log(posts)
+  console.log(posts[4])
   return (
     <div className="flex flex-col h-screen">
       <Header />
@@ -15,7 +15,7 @@ const Posts: React.FC<PostProps[]> = ({ posts }) => {
         <div className="grid grid-cols-3 gap-2 ">
           {
             posts?.map(({ title, body, userId, id }: PostProps, key: number) => (
-              <PostCard title={title} body={body} userId={userId} id={id} key={key} />
+              <PostCard title={title} body={body} userId={userId} id={id} key={id} />
             ))
           }
         </div>
