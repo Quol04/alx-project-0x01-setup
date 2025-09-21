@@ -50,6 +50,11 @@ export interface PostModalProps{
     onSubmit: (post: PostData) => void;
 }
 
+// Props for the posts page component
+export interface PostsPageProps {
+    posts: PostProps[];
+}
+
 // props for the user to be added
 
 export interface UserData{
@@ -65,5 +70,10 @@ export interface UserData{
 
 export interface UserModalProps{
     onClose: () => void;
-    onSubmit: (post: UserProps)=> void;
+    onSubmit: (user: UserProps) => void;
+}
+
+// Props for the users page component
+export interface UsersPageProps {
+    users: UserProps[];
 }

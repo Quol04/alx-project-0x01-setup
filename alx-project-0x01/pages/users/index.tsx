@@ -2,15 +2,15 @@
 import UserCard from "@/components/common/UserCard";
 import UserModal from "@/components/common/UserModal";
 import Header from "@/components/layout/Header";
-import { UserData, UserProps } from "@/interfaces";
+import { UserData, UserProps, UsersPageProps } from "@/interfaces";
 import { useState } from "react";
 
-const User: React.FC<UserProps[]> = ({ posts }) => {
+const Users: React.FC<UsersPageProps> = ({ users }) => {
     const [user, setUser] = useState <UserData | null>(null)
     const [isModalOpen, setModalOpen]= useState(false)
 
     const handleAddUser = ( prevUser: UserData) => {
-        setUser({... prevUser, id : posts.length +1 })
+        setUser({... prevUser, id : users.length +1 })
     }
 
 //   console.log(users[5])
@@ -25,8 +25,18 @@ const User: React.FC<UserProps[]> = ({ posts }) => {
         </div>
         <div className="grid grid-cols-3 gap-2 ">
           {
-            posts?.map(({ username, phone, email, id,name, website, company, address }: UserProps, key: number) => (
-              <UserCard username={username} phone={phone} email={email} id={id} name={name} website={website} company={company} address={address} key={id}  />
+            users?.map((user: UserProps) => (
+              <UserCard 
+                key={user.id}
+                id={user.id}
+                name={user.name}
+                username={user.username} 
+                email={user.email}
+                address={user.address}
+                phone={user.phone}
+                website={user.website}
+                company={user.company}
+              />
             ))
           }
         </div>
@@ -41,13 +51,13 @@ const User: React.FC<UserProps[]> = ({ posts }) => {
 
 export async function getStaticProps(){
     const response= await fetch ("https://jsonplaceholder.typicode.com/users")
-    const posts = await response.json()
+    const users = await response.json()
 
     return {
         props:{
-            posts
+            users
         }
      }
 }
 
-export default User ;
+export default Users ;
